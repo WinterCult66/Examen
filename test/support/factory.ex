@@ -13,7 +13,7 @@ defmodule Examen.Factory do
   def book_factory do
     %Examen.Book{
       name: "el senor de los anillos",
-      autor_id: 1
+      autor_id: 0
     }
   end
 

@@ -1,40 +1,35 @@
 defmodule Examen.ExamenTest do
   use ExUnit.Case
   use Examen.DataCase
-  alias Examen
+  #alias Examen.HelperAutor
+  alias Examen.HelperBook
 
-  describe "#get_author" do
+  describe "#Test to validate the join with 6 data when is Success" do
     setup do
       autor = insert(:autor)
-      {:ok, autor: autor}
+      book = insert(:book, autor_id: autor.id )
+
+      autor2 = insert(:autor)
+      book2 = insert(:book, autor_id: autor2.id )
+
+      autor3 = insert(:autor)
+      book3 = insert(:book, autor_id: autor3.id )
+
+      autor4 = insert(:autor)
+      book4 = insert(:book, autor_id: autor4.id )
+
+      autor5 = insert(:autor)
+      book5 = insert(:book, autor_id: autor5.id )
+
+      {:ok, [autor: autor , book: book, autor: autor2 , book: book2, autor: autor3 , book: book3, autor: autor4 , book: book4, autor: autor5 , book: book5]}
     end
 
-    test "list_all_authors", %{
-      autor: autor
+    test "#get data", %{
+      autor: _,
+      book: _
     } do
-        assert true
+      joins =  HelperBook.get_books_with_author
+        assert length(joins) == 6
     end
   end
 end
-
-
-
-
-
-
- # test "create_author /1" do
- #   map = %{name: "kevin"}
- #   author = Examen.create_author(map)
- #   assert author != nil
- # end
-#
- # test "create_book /1" do
- #   map = %{name: "kevin"}
- #   author = Examen.create_author(map)
- #   assert author != nil
- # end
-#
- # test "list_all_authors /0" do
- #  result=  Examen.list_all_authors()
- #  assert true
- # end
