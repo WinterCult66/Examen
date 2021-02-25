@@ -32,4 +32,18 @@ defmodule Examen.ExamenTest do
         assert length(joins) == 6
     end
   end
+
+  describe "# " do
+    setup do
+      autor = insert(:autor)
+    end
+
+    test "#get data", %{
+      autor: _,
+      book: _
+    } do
+      joins =  HelperBook.get_books_with_author
+        assert length(joins) == 6
+    end
+  end
 end

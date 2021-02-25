@@ -1,12 +1,11 @@
 defmodule Examen.Factory do
-
   use ExMachina.Ecto, repo: Examen.Repo
 
-  #use ExMachina
+  # use ExMachina
 
   def autor_factory do
     %Examen.Autor{
-      name: "J. R. R. Tolkien",
+      name: "J. R. R. Tolkien"
     }
   end
 
@@ -16,5 +15,4 @@ defmodule Examen.Factory do
       autor_id: 0
     }
   end
-
 end
