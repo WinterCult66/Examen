@@ -7,19 +7,20 @@ defmodule Examen.ExamenTest do
   describe "#Test to validate the join with 6 data when is Success" do
     setup do
       autor = insert(:autor)
-      book = insert(:book, autor_id: autor.id)
+      library = insert(:library)
+      book = insert(:book, autor_id: autor.id, library_id: library.id)
 
       autor2 = insert(:autor)
-      book2 = insert(:book, autor_id: autor2.id)
+      book2 = insert(:book, autor_id: autor2.id, library_id: library.id)
 
       autor3 = insert(:autor)
-      book3 = insert(:book, autor_id: autor3.id)
+      book3 = insert(:book, autor_id: autor3.id, library_id: library.id)
 
       autor4 = insert(:autor)
-      book4 = insert(:book, autor_id: autor4.id)
+      book4 = insert(:book, autor_id: autor4.id, library_id: library.id)
 
       autor5 = insert(:autor)
-      book5 = insert(:book, autor_id: autor5.id)
+      book5 = insert(:book, autor_id: autor5.id, library_id: library.id)
 
       {:ok,
        [
@@ -32,30 +33,34 @@ defmodule Examen.ExamenTest do
          autor: autor4,
          book: book4,
          autor: autor5,
-         book: book5
+         book: book5,
+         library: library
        ]}
     end
 
-    test "#get data", %{
-      autor: _,
-      book: _
-    } do
-      joins = HelperBook.get_books_with_author()
-      assert length(joins) == 6
-    end
-  end
+   test "#get data", %{
+     autor: _,
+     book: _,
+     library: _
+   } do
+     joins = HelperBook.get_books_with_author_2()
+     assert length(joins) == 5
+   end
+ end
+#
+# describe "insert author" do
+#   setup do
+#     autor = insert(:autor, name: nil)
+#     {:ok, autor: autor}
+#   end
+#
+#   test "#get data 2", %{
+#     autor: autor
+#   } do
+#     IO.inspect(autor, label: ">>>>>>>>>>>>>>")
+#     assert true
+#   end
+# end
 
-  describe "insert author" do
-    setup do
-      autor = insert(:autor, name: nil)
-      {:ok, autor: autor}
-    end
 
-    test "#get data 2", %{
-      autor: autor
-    } do
-      IO.inspect(autor, label: ">>>>>>>>>>>>>>")
-      assert true
-    end
-  end
 end

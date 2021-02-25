@@ -3,6 +3,7 @@ defmodule Examen.HelperBook do
   alias Examen.Repo
   alias Examen.Autor
   alias Examen.Book
+  alias Examen.Library
 
   def list_book do
     Repo.all(Book)
@@ -31,13 +32,20 @@ defmodule Examen.HelperBook do
   end
 
   def get_books_with_author() do
-    query = from b in Book, join: a in Autor, on: a.id == b.autor_id
+    (from b in Book,
+                 join: a in Autor, on: a.id == b.autor_id,
+                 join: l in Library, on: l.id == b.library_id,
+                 select: {b.name, a.name, l.category})
+    |> Repo.all()
+    |> IO.inspect
+  end
 
-    query =
-      from [b, a] in query,
-        select: {b.name, a.name}
-
-    result = Repo.all(query)
-    IO.inspect(result)
+  def get_books_with_author_2() do
+    (from b in Book,
+                 join: a in assoc(b, :autor),
+                 join: l in assoc(b, :library),
+                 select: {b.name, a.name, l.category})
+    |> Repo.all()
+    |> IO.inspect
   end
 end
