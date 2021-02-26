@@ -43,16 +43,6 @@ defmodule Examen.ExamenTest do
        ]}
     end
 
-   test "#Validate the 5 rows in Join all tables Where is Success", %{ autor: _, book: _, library: _} do
-     joins = HelperBook.get_books_with_author_2()
-     assert length(joins) == 5
-   end
-
-   test "#Validate the 4 rows in Join all tables Where is False" do
-    joins = HelperBook.get_books_with_author_2()
-    assert length(joins) == 0
-  end
-
 
   test "# Validate The Creation of Autor ==> True", %{autor: autor} do
     result = HelperAutor.get_autor!(autor.id)
@@ -69,19 +59,20 @@ defmodule Examen.ExamenTest do
     assert %Examen.Library{category: category} = result
   end
 
+  test "#Validate the 5 rows in Join all tables Where is Success", %{ autor: _, book: _, library: _} do
+    joins = HelperBook.get_books_with_author_2()
+    assert length(joins) == 5
+  end
 
-
-
-
-
-
+  test "#Validate the 4 rows in Join all tables Where is False" do
+   joins = HelperBook.get_books_with_author_2()
+   assert length(joins) == 0
+ end
 
   test "# Validate The Creation of Library ==> False" do
     result = HelperLibrary.get_library!(9999)
     assert %Examen.Library{category: category} = result
   end
-
-
 
   test "# Delete the library due the  hasn't relation ==> True", %{library2: library2} do
     assert HelperLibrary.delete_library(library2)
