@@ -1,32 +1,32 @@
-defmodule Examen.HelperAutor do
+defmodule Examen.HelperLibrary do
   import Ecto.Query, warn: false
   alias Examen.Repo
 
   alias Examen.Library
 
-  def list_autor do
+  def list_library do
     Repo.all(Library)
   end
 
-  def get_autor!(id), do: Repo.get!(Library, id)
+  def get_library!(id), do: Repo.get!(Library, id)
 
-  def create_autor(attrs \\ %{}) do
+  def create_library(attrs \\ %{}) do
     %Library{}
     |> Library.changeset(attrs)
     |> Repo.insert()
   end
 
-  def update_autor(%Library{} = library, attrs) do
+  def update_library(%Library{} = library, attrs) do
     library
     |> Library.changeset(attrs)
     |> Repo.update()
   end
 
-  def delete_autor(%Library{} = library) do
+  def delete_library(%Library{} = library) do
     Repo.delete(library)
   end
 
-  def change_autor(%Library{} = library) do
+  def change_library(%Library{} = library) do
     Library.changeset(library, %{})
   end
 end
