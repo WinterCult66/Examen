@@ -8,10 +8,10 @@ defmodule Examen.Library do
   end
 
 
-  def changeset(book, attrs) do
-    book
-    |> cast(attrs, [:name, :autor_id])
-    |> validate_required([:name, :autor_id])
+  def changeset(library, attrs) do
+    library
+    |> cast(attrs, [:category])
+    |> validate_required([:category])
   end
 
 end
