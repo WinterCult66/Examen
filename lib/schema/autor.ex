@@ -9,7 +9,6 @@ defmodule Examen.Autor do
   end
 
   def changeset(autor, attrs) do
-    IO.puts("llego")
     autor
     |> cast(attrs, [:name])
     |> validate_required([:name])

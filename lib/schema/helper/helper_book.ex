@@ -46,6 +46,5 @@ defmodule Examen.HelperBook do
                  join: l in assoc(b, :library),
                  select: {b.name, a.name, l.category})
     |> Repo.all()
-    |> IO.inspect
   end
 end
