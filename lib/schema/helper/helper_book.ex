@@ -32,19 +32,23 @@ defmodule Examen.HelperBook do
   end
 
   def get_books_with_author() do
-    (from b in Book,
-                 join: a in Autor, on: a.id == b.autor_id,
-                 join: l in Library, on: l.id == b.library_id,
-                 select: {b.name, a.name, l.category})
+    from(b in Book,
+      join: a in Autor,
+      on: a.id == b.autor_id,
+      join: l in Library,
+      on: l.id == b.library_id,
+      select: {b.name, a.name, l.category}
+    )
     |> Repo.all()
-    |> IO.inspect
+    |> IO.inspect()
   end
 
   def get_books_with_author_2() do
-    (from b in Book,
-                 join: a in assoc(b, :autor),
-                 join: l in assoc(b, :library),
-                 select: {b.name, a.name, l.category})
+    from(b in Book,
+      join: a in assoc(b, :autor),
+      join: l in assoc(b, :library),
+      select: {b.name, a.name, l.category}
+    )
     |> Repo.all()
   end
 end

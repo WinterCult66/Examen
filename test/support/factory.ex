@@ -11,16 +11,14 @@ defmodule Examen.Factory do
 
   def autor_factory do
     %Examen.Autor{
-      name: sequence(:name, &"J. R. R. Tolkien #{&1}" )
+      name: sequence(:name, &"J. R. R. Tolkien #{&1}")
     }
   end
 
   def book_factory do
     %Examen.Book{
-      name: sequence(:name, &"el senor de los anillos #{&1}" ),
+      name: sequence(:name, &"el senor de los anillos #{&1}"),
       autor_id: 0
     }
   end
-
-
 end

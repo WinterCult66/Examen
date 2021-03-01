@@ -7,11 +7,9 @@ defmodule Examen.Library do
     has_many :books, Examen.Book
   end
 
-
   def changeset(library, attrs) do
     library
     |> cast(attrs, [:category])
     |> validate_required([:category])
   end
-
 end
